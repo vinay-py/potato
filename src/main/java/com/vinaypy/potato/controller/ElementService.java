@@ -6,6 +6,9 @@ import com.vinaypy.potato.model.ElementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class ElementService {
 
@@ -21,5 +24,14 @@ public class ElementService {
                 new ElementEntity(elementDto.getElementName(),
                         elementDto.getElementType())
         );
+    }
+
+    public List<ElementDto> fetchAll() {
+        return elementRepository.findAll()
+                .stream()
+                .map(elementEntity -> {
+                    return new ElementDto(elementEntity.getElementName(), elementEntity.getElementType());
+                })
+                .collect(Collectors.toList());
     }
 }
