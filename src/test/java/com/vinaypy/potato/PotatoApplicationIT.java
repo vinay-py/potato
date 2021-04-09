@@ -26,7 +26,7 @@ public class PotatoApplicationIT {
 
     @Test
     public void create_fetchAll() throws Exception {
-        ElementDto elementDto = new ElementDto("element1");
+        ElementDto elementDto = new ElementDto("element1","book");
 
         mockMvc.perform(
                 post("/elements")
@@ -39,6 +39,7 @@ public class PotatoApplicationIT {
                 .contentType(MediaType.APPLICATION_JSON)
         ).andExpect(status().isOk())
         .andExpect(jsonPath("length()").value(1))
-        .andExpect(jsonPath("[0].elementName").value("element1"));
+        .andExpect(jsonPath("[0].elementName").value("element1"))
+        .andExpect(jsonPath("[0].elementType").value("book"));
     }
 }

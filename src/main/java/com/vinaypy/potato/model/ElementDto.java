@@ -10,5 +10,6 @@ import lombok.Value;
 @NoArgsConstructor
 public class ElementDto {
     private String elementName;
+    private String elementType;
 
 }
